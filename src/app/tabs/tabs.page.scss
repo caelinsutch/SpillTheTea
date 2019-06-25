@@ -1,1 +1,6 @@
-
+ion-icon {
+  // fill: black;
+  .tab-selected {
+  --color-selected: black !important;
+  }
+}

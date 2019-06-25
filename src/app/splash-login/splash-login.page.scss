@@ -1,0 +1,34 @@
+h1 {
+
+font-family: Nunito;
+font-style: normal;
+font-weight: 900;
+font-size: 90px;
+line-height: 106.1%;
+/* or 81px */
+display: flex;
+align-items: flex-end;
+text-align: center;
+letter-spacing: 8px;
+
+  /* Gradient 2 */
+background: -webkit-linear-gradient(315.35deg, #FF7676 0%, #F54EA2 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+
+}
+
+.logo {
+  margin-top: 20%;
+}
+
+.login {
+  font-family: Nunito;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  background: linear-gradient(352.05deg, #FF7676 0%, #F54EA2 100%);
+  border-radius: 8px;
+  color: white;
+  padding: 12px 12px 12px 12px !important;
+}
