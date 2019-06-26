@@ -1,3 +1,25 @@
-<p>
-  register works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="show-back-button"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<div class="position-absolute gradient-1 w-100 h-100"></div>
+
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card class="p-3 text-center register" color="white">
+        <ion-card-title>Register</ion-card-title>
+        <ion-input placeholder="First Name"></ion-input>
+        <ion-input placeholder="Last Name"></ion-input>
+        <ion-input placeholder="Email"></ion-input>
+        <ion-input placeholder="Username"></ion-input>
+        <ion-input placeholder="Password"></ion-input>
+        <ion-button fill="clear" class="gradient-2 px-3 py-2">Register</ion-button>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
