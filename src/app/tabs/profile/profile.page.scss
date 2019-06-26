@@ -1,0 +1,74 @@
+
+.main-info {
+  .profile-picture {
+    display: inline-block;
+
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .user-info {
+    margin-top: 18px;
+  }
+
+  .user-name {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  .user-tag {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #9A9A9A;
+  }
+
+  .bio {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+
+.stats {
+  background: #FFFFFF;
+  box-shadow: 0px 15px 45px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
+  p {
+    margin-bottom: 2px !important;
+  }
+  .number {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    color: #000000;
+  }
+
+  .label {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    text-align: center;
+    color: #9A9A9A;
+
+  }
+}
+
+.edit-profile {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  background: linear-gradient(170.13deg, #FCE38A 0%, #F38181 100%);
+  box-shadow: 0px 15px 45px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  color: white;
+  padding: 12px 12px 12px 12px !important;
+  height: 60px;
+}
