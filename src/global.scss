@@ -10,7 +10,9 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 
-// @import '~bootstrap/dist/css/bootstrap.min.css';
+ @import '~bootstrap/dist/css/bootstrap.min.css';
+
+@import url('https://fonts.googleapis.com/css?family=Nunito|Nunito+Sans&display=swap');
 
 .gradient-1 {
   background: linear-gradient(141.34deg, #FCE38A 0%, #F38181 100%) !important;
