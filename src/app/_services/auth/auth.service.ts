@@ -1,45 +1,64 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {User} from 'firebase';
-import {Observable} from 'rxjs';
 
-import { Router } from  "@angular/router";
-import { auth } from  'firebase/app';
-import { AngularFireAuth } from  "@angular/fire/auth";
-import { User } from  'firebase';
+import {Router} from "@angular/router";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {User} from 'firebase';
+import {Observable, of, Subject} from 'rxjs';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {UserModel} from '../../_models/user.model';
+import {switchMap} from 'rxjs/operators';
 
 
 @Injectable()
 export class AuthService {
-  user: User;
+    user: Observable<UserModel>;
 
-  constructor(public afAuth: AngularFireAuth, public router: Router) {
-      this.afAuth.authState.subscribe(user => {
-          if (user) {
-              this.user = user;
-              localStorage.setItem('user', JSON.stringify(this.user));
-          } else {
-              localStore.setItem('user', null);
-          }
-      })
-  }
+    constructor(
+        private afAuth: AngularFireAuth,
+        private afStore: AngularFirestore,
+        private router: Router) {
+        this.user = this.afAuth.authState.pipe(
+            switchMap(user => {
+                if (user) {
+                    return this.afStore.doc<UserModel>(`users/${user.uid}`).valueChanges()
+                } else {
+                    return of(null)
+                }
+            })
+        )
+    }
 
-  async login(email: string, password: string) {
-      try {
-          await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-          console.log('logged in')
-      } catch (e) {
-          console.log("Error" + e.message)
-      }
-  }
+    register(email: string, password: string) {
+        return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    }
 
-    async logout(){
+    login(email: string, password: string): Promise<any> {
+        return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+    }
+
+    updateUser(registeredUser: User, user) {
+        const userRef: AngularFirestoreDocument<any> = this.afStore.doc(`users/${registeredUser.uid}`);
+        const data: UserModel = {
+            uid: registeredUser.uid,
+            email: registeredUser.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            displayName: user.username,
+            photoUrl: user.photoUrl ? user.photoUrl : null
+        };
+
+        return userRef.set(data, { merge: true})
+    }
+
+    async logout() {
         await this.afAuth.auth.signOut();
         localStorage.removeItem('user');
-        this.router.navigate(['admin/login']);
+        this.router.navigate(['/']);
     }
 
     get isLoggedIn(): boolean {
-        const  user  =  JSON.parse(localStorage.getItem('user'));
-        return  user  !==  null;
+        const currentUser = JSON.parse(localStorage.getItem('user'));
+        return currentUser !== null;
     }
 }

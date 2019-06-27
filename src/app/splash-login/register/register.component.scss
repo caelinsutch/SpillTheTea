@@ -1,5 +1,5 @@
 .register > * {
-  margin-top: 16px !important;
+  margin-top: 16px;
 }
 
 ion-card {
@@ -21,7 +21,31 @@ ion-toolbar {
 ion-back-button {
   --color: white;
 }
-ion-button {
+
+.submit-button {
   border-radius: 20px;
   color: white;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+button:disabled {
+  background: lightgrey !important;
+}
+
+.error-message {
+  text-align: left;
+  margin-left: 8px !important;
+  margin-top: 4px !important;
+  color: red;
+  font-size: 10px;
+}
+
+.validation-errors {
+  margin-top: 0 !important;
+}
+
+ion-label {
+  position: relative;
+  bottom: 8px;
 }
