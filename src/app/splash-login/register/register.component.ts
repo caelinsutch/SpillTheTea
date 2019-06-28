@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../_services/auth/auth.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {register} from 'ts-node';
-import {User} from 'firebase';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
 @Component({
@@ -13,7 +11,6 @@ import {Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   form: FormGroup;
-  matchingPasswords: FormGroup;
   error: string;
 
   constructor(
@@ -76,14 +73,11 @@ export class RegisterComponent implements OnInit {
     this.authService.register(userData.email, userData.password).then( res => {
       this.authService.login(userData.email, userData.password).then(loginRes => {
         this.authService.updateUser(res.user, userData).then(updateRes => {
-          this.router.navigate(['/']).then();
+          this.router.navigate(['/tabs'], { queryParams: {newUser: true}}).then();
         });
       })
     }).catch(e => {
       this.error = e.message
-    });  }
-
-  log() {
-
+    });
   }
 }

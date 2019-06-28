@@ -1,3 +1,46 @@
-<p>
-  login works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="show-back-button"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<div class="position-absolute gradient-1 w-100 h-100"></div>
+
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card class="px-5 py-2 text-center" color="white">
+        <form [formGroup]="form" (ngSubmit)="submit(form.value)" class="register">
+          <ion-card-title>Log in</ion-card-title>
+
+          <ion-input placeholder="Email" formControlName="email"></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.email">
+              <div class="error-message" *ngIf="form.get('email').hasError(validation.type) && (form.get('email').dirty || form.get('email').touched)">
+                <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <ion-input placeholder="Password" type="password" formControlName="password"></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.password">
+              <div class="error-message" *ngIf="form.get('password').hasError(validation.type) && (form.get('password').dirty || form.get('password').touched)">
+                <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <button class="gradient-2 px-3 py-2 submit-button" type="submit" [disabled]="!form.valid">Log In </button>
+
+          <div class="error-message" *ngIf="error">
+            <p class="">{{ error }}</p>
+          </div>
+
+        </form>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
